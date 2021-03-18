@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using barista.api.Models;
 
 namespace barista.api
 {
@@ -28,6 +30,8 @@ namespace barista.api
         {
 
             services.AddControllers();
+            services.AddDbContext<UserContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "barista.api", Version = "v1" });
@@ -42,6 +46,12 @@ namespace barista.api
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "barista.api v1.1"));
+            }
+            else
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyCoffeeApp.WebAPI v1"));
+                app.UseHttpsRedirection();
             }
 
             app.UseHttpsRedirection();
