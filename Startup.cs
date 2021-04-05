@@ -32,6 +32,8 @@ namespace barista.api
             services.AddControllers();
             services.AddDbContext<UserContext>(options =>
                     options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<VisitorContext>(options =>
+        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "barista.api", Version = "v1" });
