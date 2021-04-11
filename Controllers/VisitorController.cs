@@ -51,6 +51,7 @@ namespace barista.api.Controllers
             newVisitor.Firstname = visitor.Firstname;
             newVisitor.Lastname = visitor.Lastname;
             newVisitor.Email = visitor.Email;
+            newVisitor.DueDate = visitor.DueDate;
             _visitorContext.SaveChanges();
             return newVisitor;
 

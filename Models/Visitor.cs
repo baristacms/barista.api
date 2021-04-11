@@ -11,5 +11,7 @@ namespace barista.api.Models
         public String Firstname { get; set; }
         public String Lastname { get; set; }
         public String Email { get; set; }
+
+        public string DueDate { get; set; }
     }
 }
